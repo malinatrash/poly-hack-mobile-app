@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c9bb39a5-dc59-4af1-a1c5-52a7dd3efc3c"
+      }
+    },
+    "owner": "malinatrash"
   }
 }

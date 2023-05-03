@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AuthScreen from "./src/screens/auth/AuthScreen";
+import SignUpForm from "./src/screens/auth/modules/SignUpForm";
+import SignInForm from "./src/screens/auth/modules/SignInForm";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const Stack = createNativeStackNavigator();
+
+function App() {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name="SignUp" options={{headerShown: false}}>
+                    {(props) =>
+                        <AuthScreen children={<SignUpForm/>} />}
+                </Stack.Screen>
+                <Stack.Screen name="SignIn" options={{headerShown: false}}>
+                    {(props) =>
+                        <AuthScreen children={<SignInForm/>} />}
+                </Stack.Screen>
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// .color1 {color: #0e3a58;}
+// .color2 {color: #0c5e7e;}
+// .color3 {color: #0991ad;}
+// .color4 {color: #05d8e3;}
+// .color5 {color: #0ffff7;}
+
+export default App
