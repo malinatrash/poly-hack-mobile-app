@@ -2,7 +2,6 @@ import * as React from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import AuthScreen from "./src/screens/auth/AuthScreen";
 import SignUpForm from "./src/screens/auth/modules/SignUpForm";
 import SignInForm from "./src/screens/auth/modules/SignInForm";
 
@@ -12,14 +11,8 @@ function App() {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name="SignUp" options={{headerShown: false}}>
-                    {(props) =>
-                        <AuthScreen children={<SignUpForm/>} />}
-                </Stack.Screen>
-                <Stack.Screen name="SignIn" options={{headerShown: false}}>
-                    {(props) =>
-                        <AuthScreen children={<SignInForm/>} />}
-                </Stack.Screen>
+                <Stack.Screen name={'Регистрация'} component={SignUpForm} options={{headerShown: false}}/>
+                <Stack.Screen name={'Авторизация'} component={SignInForm} options={{headerShown: false}}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
