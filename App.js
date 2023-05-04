@@ -4,6 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignUpForm from "./src/screens/auth/modules/SignUpForm";
 import SignInForm from "./src/screens/auth/modules/SignInForm";
+import Home from "./src/screens/home/Home";
+import Persons from "./src/screens/persons/Persons";
+import Test from "./src/screens/test/Test";
+import Hello from "./src/screens/test/Hello";
+import Result from "./src/screens/result/Result";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,6 +18,11 @@ function App() {
             <Stack.Navigator>
                 <Stack.Screen name={'Регистрация'} component={SignUpForm} options={{headerShown: false}}/>
                 <Stack.Screen name={'Авторизация'} component={SignInForm} options={{headerShown: false}}/>
+                <Stack.Screen name={'home'} component={Home} options={{headerShown: false}}/>
+                <Stack.Screen name={'trustedPersons'} component={Persons} options={{headerShown: false}}/>
+                <Stack.Screen name={'test'} component={Test} options={{headerShown: false}}/>
+                <Stack.Screen name={'Hello'} component={Hello} options={{headerShown: false}}/>
+                <Stack.Screen name={'result'} component={Result} options={{headerShown: false}}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

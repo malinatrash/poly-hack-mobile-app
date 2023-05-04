@@ -5,19 +5,29 @@ import Title from "../components/Title";
 import {Button, IconButton, TextInput} from "@react-native-material/core";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import Form from "../components/Form";
+import AuthManger from "../../../services/AuthManger";
+import User from "../../../model/User";
+import StateManager from "../../../services/StateManager";
 
 const SignInForm = ({navigation}) => {
     const [buttonIsHandling, setButtonIsHandling] = useState(false);
-    const [name, setName] = useState();
-    const [lastname, setLastname] = useState();
+    const [phone, setPhone] = useState();
     const [password, setPassword] = useState();
     const [showPassword, setShowPassword] = useState(false);
 
     const handleClick = () => {
         setButtonIsHandling(true)
-        setTimeout(() => {
-            setButtonIsHandling(false)
-        }, 1000)
+        let res = AuthManger.shared.signIn(phone, password);
+        res.then(value => {
+            if (value.code !== 1) {
+                alert(value.description)
+                return
+            }
+            let user = value.profile
+            StateManager.shared.setUser(user);
+            navigation.navigate("home")
+        })
+        setButtonIsHandling(false)
     }
     return (
         <View style={{
@@ -31,25 +41,14 @@ const SignInForm = ({navigation}) => {
             <Form>
                 <Title text={'Вход'}/>
                 <TextInput
-                    value={name}
-                    onChangeText={text => setName(text)}
+                    value={phone}
+                    onChangeText={text => setPhone(text)}
                     style={{
-                        marginTop: 40,
+                        marginTop: 70,
                         width: '86%'
                     }}
-                    label="Имя"
-                    leading={props => <Icon name="account" {...props} />}
-                />
-                <TextInput
-                    value={lastname}
-                    onChangeText={text => setLastname(text)}
-                    style={{
-                        marginTop: 20,
-                        width: '86%'
-                    }}
-
-                    label="Фамилия"
-                    leading={props => <Icon name="account" {...props} />}
+                    label="Номер телефона"
+                    leading={props => <Icon name="phone" {...props} />}
                 />
 
                 <TextInput
@@ -87,7 +86,7 @@ const SignInForm = ({navigation}) => {
                         marginTop: 30,
                         fontStyle: 'italic'
                     }}
-                    onPress={() => navigation.goBack()}
+                    onPress={() => navigation.push('Регистрация')}
                 >Еще не зарегистрированы?</Text>
             </Form>
             <StatusBar style={'auto'}/>
