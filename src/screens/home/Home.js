@@ -2,11 +2,19 @@ import {TouchableOpacity, View} from "react-native";
 import Text from "@react-native-material/core/src/Text";
 import StateManager from "../../services/StateManager";
 import {Button} from "@react-native-material/core";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import TrustedPerson from "../../model/TrustedPerson";
 import HealthState from "./HealthState";
 
 const Home = ({navigation}) => {
+    const [mental, setMental] = useState(StateManager.shared.mentalHealth);
+    const [physics, setPhysics] = useState(StateManager.shared.physicalHealth);
+
+    useEffect(() => {
+        setMental(StateManager.shared.mentalHealth);
+        setPhysics(StateManager.shared.physicalHealth);
+
+    }, [StateManager.shared.mentalHealth, StateManager.shared.physicalHealth]);
 
     return (
         <View style={{
@@ -48,10 +56,10 @@ const Home = ({navigation}) => {
                 </TouchableOpacity>
             </View>
             <Text style={{fontWeight: 'bold', color: '#123b5e'}} variant={'h5'}>Состояние ментального здоровья: </Text>
-            <HealthState state={'Не оценено'}/>
+            <HealthState state={mental !== 0 ? mental : 'Не оценено'}/>
 
             <Text style={{fontWeight: 'bold', color: '#123b5e'}} variant={'h5'}>Состояние физического здоровья: </Text>
-            <HealthState state={'Не оценено'}/>
+            <HealthState state={physics !== 0 ? physics : 'Не оценено'}/>
             <Button
                 onTouchEndCapture={() => {
                     navigation.navigate('Hello')

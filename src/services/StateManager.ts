@@ -1,6 +1,4 @@
 import User from "../model/User";
-import Test from "../model/Test";
-import Question from "../model/Question";
 import TrustedPerson from "../model/TrustedPerson";
 
 export default class StateManager{
@@ -10,14 +8,15 @@ export default class StateManager{
     private _question: Question;
     private _trustedPersons: TrustedPerson[];
 
+    public mentalHealth = 0;
+    public physicalHealth = 0;
 
     public strustedPersons = [
-        new TrustedPerson("Дима 1", "9595592"),
-        new TrustedPerson("Дима 2", "9595592"),
-        new TrustedPerson("Дима 3", "9595592"),
-        new TrustedPerson("Дима 4", "9595592"),
-        new TrustedPerson("Дима 5", "9595592"),
+        new TrustedPerson("Егор", "7 (904) 714 10 10"),
+        new TrustedPerson("Ирина", "7 (904) 714 10 10"),
+        new TrustedPerson("Даниил", "7 (904) 714 10 10"),
     ]
+
 
     setUser(user: User) {
         this._user = user;

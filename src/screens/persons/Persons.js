@@ -14,7 +14,12 @@ const Persons = ({navigation}) => {
     const [phone, setPhone] = useState('');
 
     const addTrustedPerson = () => {
-        QueryManager.shared.addTrustedPerson(name, phone);
+        // QueryManager.shared.addTrustedPerson(name, phone);
+        if (name === "" || phone === '') {
+            alert('Заполните все поля!')
+            return
+        }
+        StateManager.shared.strustedPersons.push(new TrustedPerson(name, phone))
     };
 
     return (

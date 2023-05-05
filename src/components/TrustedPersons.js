@@ -4,12 +4,12 @@ import Text from "@react-native-material/core/src/Text";
 
 const TrustedPersons = ({trustedPerson, shown}) => {
     return (
-        <View style={{
+        <View key={trustedPerson.id} style={{
             display: shown ? 'none' : 'flex'
         }}>
             {
                 trustedPerson.map(value =>
-                    <View key={value.key} style={{
+                    <View style={{
                         width: 350,
                         backgroundColor: '#123b5e',
                         margin: 15,

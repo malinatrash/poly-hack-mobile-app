@@ -31,11 +31,13 @@ const SignInForm = ({navigation}) => {
     }
     return (
         <View style={{
+            height: '100%',
+            backgroundColor: '#20aad8',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            marginTop: '43%'
+            paddingTop: '30%'
         }}
         >
             <Form>

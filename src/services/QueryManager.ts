@@ -33,4 +33,14 @@ export class QueryManager {
             return null;
         }
     }
+    getResults = async () => {
+        const url = `http://a0814711.xsph.ru/api/profile/recommendation?phone=${StateManager.shared.user.phone}`;
+        try {
+            const response = await axios.get<ResultResponse>(url);
+            return response.data;
+        } catch (error) {
+            console.log('Ошибка запроса', error);
+            return null;
+        }
+    }
 }

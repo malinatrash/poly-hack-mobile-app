@@ -29,7 +29,6 @@ const SignUpForm = ({navigation}) => {
                 return
             }
             StateManager.shared.setUser(new User(name, phone, password, date));
-            alert("Вы успешно зарегистрировались!")
             navigation.navigate("home")
         })
         setButtonIsHandling(false)
@@ -51,11 +50,13 @@ const SignUpForm = ({navigation}) => {
             setShowDatePicker(false);
         }}>
             <View style={{
+                height: '100%',
+                backgroundColor: '#20aad8',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
-                marginTop: '40%'
+                paddingTop: '30%'
             }}
             >
                 <Form>
