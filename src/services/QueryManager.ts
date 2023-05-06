@@ -1,5 +1,5 @@
 import StateManager from "./StateManager";
-import axios from "axios/index";
+import axios from "axios";
 
 export class QueryManager {
     public static shared = new QueryManager();
